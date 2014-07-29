@@ -1,0 +1,137 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Gulp!
+
+    // build:css styles/styles.css
+    //- Check out 'src/bower_components/prism/themes/' for available themes
+    link(rel='stylesheet', type='text/css', href='bower_components/prism/themes/prism-tomorrow.css')
+    link(rel='stylesheet', type='text/css', href='styles/main.css')
+    // endbuild
+
+  body
+
+    article
+
+      section
+        h1 Gulp!
+        img.gulp(src='images/gulp.png')
+        div Dan Schuman / Extensis / <a href="mailto:danschuman@gmail.com">dan.schuman@gmail.com</a>
+        br
+        div Slides: <a href="http://github.com/quicksnap/gulp-slides">github.com/quicksnap/gulp-slides</a>
+
+      section
+        h2 Grunt
+        img.grunt(src='images/grunt.png' style='max-height: 200px')
+        div Configuration-based task runner
+
+      section
+        h2 Hooray! Build system!
+        pre
+          code.language-javascript.
+              grunt.initConfig({
+                watch: {
+                  files: [grunt.js', 'tasks/**/*.js', 'test/**/*.js'],
+                  tasks: 'default'
+                }
+              });
+
+              grunt.loadNpmTasks('grunt-contrib-watch');
+              grunt.registerTask('default', ['watch']);
+
+
+      section
+        small Hooray..
+        img(src='images/gruntfile.png' style='max-width:100%;max-height:100%')
+
+      section
+        h2.bullet Gulp
+        h3.bullet Simple API
+        h3.bullet Code over configuration
+        h3.bullet Streams
+
+      section
+        h2 API
+        pre(style='font-size:14px;')
+          code.language-javascript.
+            var gulp = require('gulp')
+
+            // Set up a new task..
+            gulp.task('taskName', function(done) { /* ... */ })
+
+            // ..which then reads files..
+            gulp.src('./file/path/**/*.glob')
+
+            // ..and writes to them.
+            gulp.dest('./destination/path')
+
+            // Or, watch files and call tasks when changed
+            gulp.watch('./**/*.js', ['tasks', 'to', 'run'])
+
+      section
+        h2 Code over Configuration
+        pre(style='font-size:10px;')
+          code.language-javascript.
+            var gulp        = require('gulp'),
+                coffee      = require('gulp-coffee'),
+                concat      = require('gulp-concat'),
+                uglify      = require('gulp-uglify'),
+                sourcemaps  = require('gulp-sourcemaps'),
+                del         = require('del');
+
+            // Run via `gulp scripts`
+            // Call 'clean' task before running 'scripts'
+            gulp.task('scripts', ['clean'], function() {
+              return gulp.src( 'scripts/**/*.coffee' )
+                .pipe( sourcemaps.init() )
+                  .pipe( coffee() )
+                  .pipe( uglify() )
+                  .pipe( concat('all.min.js') )
+                .pipe( sourcemaps.write() )
+                .pipe( gulp.dest('build/js') );
+            });
+
+            gulp.task('clean', function( cb ) {
+              // Just calling a standard NodeJS module.
+              del(['build'], cb);
+            });
+
+      section
+        h2 Streams
+        ul
+          li Uses native NodeJS Streams module
+          li Faster: in-memory, fewer disk writes.
+          li .. and less need for a <b>.tmp</b> folder
+          li More flexible build systems and focused plugins
+
+      section
+        h2 Plugins
+        ul
+          li 745 plugins at <a href="http://gulpjs.com/plugins/">gulpjs.com/plugins</a>
+          li Fast-growing ecosystem
+
+      section
+        h2 AngularJS?
+        h3.bullet Check out the <a href="https://github.com/slushjs/slush-angular">slush-angular</a> project generator
+        div.bullet Adheres to <a href="https://docs.google.com/document/d/1XXMvReO8-Awi1EZXAXS4PzDzdNvV6pGcuaF4Q9821Es/pub">Google's Angular App Structure Recommendations</a>
+        div.bullet Component structure instead functional structure
+        div.bullet Unit tests within component directories
+
+      section
+        h1 Thanks!
+
+    // build:js scripts/scripts.js
+    script(src='bower_components/bespoke.js/dist/bespoke.min.js')
+    script(src='bower_components/bespoke-keys/dist/bespoke-keys.min.js')
+    script(src='bower_components/bespoke-touch/dist/bespoke-touch.min.js')
+    script(src='bower_components/bespoke-bullets/dist/bespoke-bullets.min.js')
+    script(src='bower_components/bespoke-scale/dist/bespoke-scale.min.js')
+    //- script(src='bower_components/bespoke-hash/dist/bespoke-hash.min.js')
+    //- script(src='bower_components/bespoke-progress/dist/bespoke-progress.min.js')
+    script(src='bower_components/bespoke-state/dist/bespoke-state.min.js')
+    script(src='bower_components/bespoke-forms/dist/bespoke-forms.min.js')
+    script(src='bower_components/prism/prism.js')
+    script(src='scripts/main.js')
+    // endbuild
