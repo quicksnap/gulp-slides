@@ -3,8 +3,9 @@
 // variables!
 
 slide_width = 640px
+// Magic!
 slide_height = 480px
-slide_background = #eaeaea
+slide_background = #fff
 
 slide_transition_length = .6s
 slide_transition_easing = ease
@@ -70,7 +71,7 @@ article
   margin-left: (slide_width / 2) * -1
   background: slide_background
   padding: 40px
-  border-radius: 0
+  border-radius: 15px
   @media print
     zoom: 1 !important // disable bespoke-scale
     height: 743px // seems to correspond with an A4, landscape page height
@@ -168,6 +169,7 @@ body
   font-family: helvetica, arial, sans-serif
   font-size: 18px
   color: #404040
+  background: rgba(235, 74, 75, 0.19)
 
 h1
   font-size: 72px
